@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>lesson1</title>
+</head>
+<body>
+	<script type="text/javascript">
+		
+		function ChessTable(idelement){ // конструктор, на вход получает элемент в котором будет выводиться
+			this._element = document.getElementById(idelement); // записываем этот элемент в свойство конструктора в текущем контексте
+			this._table = document.createElement("table"); // записываем в свойство вновь созданный элемент таблицы
+
+			function CreateTD(i,j){ // создаём приватный метод добавления ячейки
+				var object = document.createElement("td"); // создаём объект-ячейку
+
+				if ((i+j)% 2 === 0){ //проверяем чётность ячейки
+					object.color = "white"; // если ячейка чётная, добавляем свойство цвета "белый"
+				}else{
+					object.color = "black"; // если ячейка не чётная, добавляем свойство цвета "чёрный"
+				}
+				return object; // возвращаем объект вместе со свойствами
+			}
+
+			this.draw function (rows, cols){ // создаём публичный метод рисования доски, на вход передаём колличество столбцов и коллонок
+				rows = 8; //присваиваем значение по умолчанию
+				cols = 8; //присваиваем значение по умолчанию
+
+				for (var i = 0; i <= rows) { // для каждой строки из переданных
+					var tr = document.createElement("tr"); //создаём переменную-ссылку на создание строки
+
+					for (var j = 0; j <= cols){ // для каждого столбца из полученных
+						var td = CreateTD(i,j); // создём ячейку методом CreateTD
+						tr.appendChild(td); // добавляем ячейку в конец строки
+					}
+					this._table.appendChild("tr"); // после добавления каждой ячейки из строки добавляем новую строку
+				}
+				this.element.appendChild(this.table); // после прохода всех строк и всех ячеек добавляем в элемент html всю таблицу целиком
+				return this; //возвращаем весь метод
+			}
+
+		}
+		var chess = new ChessTable("table");
+
+		
+	</script>
+	<div class="table">
+		
+	</div>
+</body>
+</html>
